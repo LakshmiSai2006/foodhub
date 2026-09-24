@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FoodHub Checkout</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff8f2;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #e85d04;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            background: #e85d04;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .payment {
+            margin-top: 20px;
+        }
+
+        .payment label {
+            font-weight: normal;
+        }
+
+        .payment input {
+            width: auto;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #e85d04;
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <h1>🍴 FoodHub Checkout</h1>
+
+
+    <div class="container">
+
+
+        <!-- CUSTOMER DETAILS -->
+
+        <div class="box">
+
+            <h2>Delivery Details</h2>
+
+            <form id="checkoutForm">
+
+                <label>Full Name</label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    required
+                >
+
+
+                <label>Phone Number</label>
+
+                <input
+                    type="tel"
+                    id="customerPhone"
+                    required
+                >
+
+
+                <label>Address</label>
+
+                <textarea
+                    id="customerAddress"
+                    required
+                ></textarea>
+
+
+                <label>City</label>
+
+                <input
+                    type="text"
+                    id="customerCity"
+                    required
+                >
+
+
+                <label>Pincode</label>
+
+                <input
+                    type="text"
+                    id="customerPincode"
+                    required
+                >
+
+
+                <div class="payment">
+
+                    <h2>Payment Method</h2>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="COD"
+                            checked
+                        >
+
+                        Cash on Delivery
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="ONLINE"
+                        >
+
+                        Online Payment
+                    </label>
+
+                </div>
+
+
+                <button type="submit">
+                    Place Order
+                </button>
+
+            </form>
+
+
+            <a href="/" class="back">
+                ← Continue Shopping
+            </a>
+
+        </div>
+
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="box">
+
+            <h2>🛒 Order Summary</h2>
+
+            <div id="checkoutItems">
+
+                Your cart is loading...
+
+            </div>
+
+
+            <div class="total">
+
+                Total: ₹<span id="checkoutTotal">0</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        console.log("Checkout page loaded");
+
+
+        // Get cart
+
+        let cart = [];
+
+        try {
+
+            cart =
+                JSON.parse(
+                    localStorage.getItem("foodhubCart")
+                ) || [];
+
+        } catch (error) {
+
+            console.log(error);
+
+            cart = [];
+
+        }
+
+
+        const itemsBox =
+            document.getElementById("checkoutItems");
+
+        const totalBox =
+            document.getElementById("checkoutTotal");
+
+
+        let total = 0;
+
+
+        // Display cart
+
+        if (cart.length === 0) {
+
+            itemsBox.innerHTML =
+                "<p>Your cart is empty.</p>";
+
+        }
+
+        else {
+
+            itemsBox.innerHTML = "";
+
+            cart.forEach(function(item) {
+
+                let price =
+                    Number(item.price) || 0;
+
+                let quantity =
+                    Number(item.quantity) || 1;
+
+                let itemTotal =
+                    price * quantity;
+
+                total += itemTotal;
+
+
+                itemsBox.innerHTML += `
+
+                    <div class="item">
+
+                        <span>
+                            ${item.name}
+                            × ${quantity}
+                        </span>
+
+                        <strong>
+                            ₹${itemTotal}
+                        </strong>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        totalBox.textContent = total;
+
+
+        // Place order
+
+        document
+            .getElementById("checkoutForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Order details received successfully! 🎉"
+                    );
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>

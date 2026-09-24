@@ -1,0 +1,483 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fffaf4;
+    color: #292929;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    width: 100%;
+    padding: 18px 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: white;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #e85d04;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #e85d04;
+}
+
+.cart-btn {
+    border: none;
+    background: #e85d04;
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 25px;
+
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#cart-count {
+    background: white;
+    color: #e85d04;
+
+    padding: 2px 7px;
+
+    border-radius: 50%;
+
+    margin-left: 5px;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 600px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 70px 8%;
+
+    background:
+        linear-gradient(
+            120deg,
+            #fff4df,
+            #fffaf4
+        );
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.tagline {
+    color: #e85d04;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: 58px;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #e85d04;
+}
+
+.hero-text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.primary-btn,
+.secondary-btn {
+    text-decoration: none;
+    padding: 14px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.primary-btn {
+    background: #e85d04;
+    color: white;
+}
+
+.secondary-btn {
+    border: 2px solid #e85d04;
+    color: #e85d04;
+}
+
+.hero-food {
+    position: relative;
+
+    width: 400px;
+    height: 400px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.food-circle {
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 130px;
+
+    background: #ffe2b8;
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.floating-card {
+    position: absolute;
+
+    background: white;
+
+    padding: 14px 20px;
+
+    border-radius: 30px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+
+    font-weight: bold;
+}
+
+.card-one {
+    top: 45px;
+    right: 0;
+}
+
+.card-two {
+    bottom: 55px;
+    left: 0;
+}
+
+
+/* ================= SECTION ================= */
+
+.categories,
+.products {
+    padding: 80px 7%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-heading p {
+    color: #e85d04;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    font-size: 38px;
+    margin: 10px 0;
+}
+
+.section-heading span {
+    color: #777;
+}
+
+
+/* ================= CATEGORIES ================= */
+
+.category-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
+}
+
+.category-card {
+    background: white;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.08);
+
+    transition: 0.3s;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+}
+
+.category-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.category-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.category-card p {
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.category-card button {
+    border: none;
+    background: none;
+
+    color: #e85d04;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* ================= PRODUCTS ================= */
+
+.product-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.08);
+
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+}
+
+.product-image {
+    height: 180px;
+
+    background: #fff1dc;
+
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 80px;
+
+    margin-bottom: 18px;
+}
+
+.product-card h3 {
+    margin-bottom: 8px;
+}
+
+.product-card p {
+    color: #777;
+    margin-bottom: 12px;
+}
+
+.product-card strong {
+    display: block;
+
+    font-size: 20px;
+
+    color: #e85d04;
+
+    margin-bottom: 15px;
+}
+
+.add-cart {
+    width: 100%;
+
+    border: none;
+
+    padding: 12px;
+
+    background: #e85d04;
+
+    color: white;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+/* ================= ABOUT ================= */
+
+.about {
+    padding: 80px 10%;
+
+    background: #3a1700;
+
+    color: white;
+
+    text-align: center;
+}
+
+.about div {
+    max-width: 800px;
+    margin: auto;
+}
+
+.about p {
+    line-height: 1.8;
+    color: #eadbd1;
+}
+
+.about h2 {
+    font-size: 40px;
+    margin: 15px 0 25px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+
+    padding: 40px 20px;
+
+    background: #211008;
+
+    color: white;
+}
+
+footer p {
+    margin-top: 10px;
+    color: #cbbcb5;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 900px) {
+
+    nav {
+        display: none;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .category-container,
+    .product-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .hero-food {
+        margin-top: 50px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .category-container,
+    .product-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-food {
+        width: 300px;
+        height: 300px;
+    }
+
+    .food-circle {
+        width: 220px;
+        height: 220px;
+        font-size: 90px;
+    }
+
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .hero {
+        padding: 50px 5%;
+    }
+
+}
